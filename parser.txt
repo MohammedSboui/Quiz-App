@@ -1,0 +1,5 @@
+npm init ( tsob package.json)
+npm install
+fichier server.js (n7ot fih express, bodyparser,cors,mongoose)
+terminal npm i(express,.....)
+npx create-react-app mon-app (
