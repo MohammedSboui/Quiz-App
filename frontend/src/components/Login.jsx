@@ -9,18 +9,28 @@ import {
   Segment,
 } from "semantic-ui-react";
 import axios from "axios";
+import { createBrowserHistory } from "history";
+const history = createBrowserHistory();
+
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleUserNameChange = (e) => {
+    setUsername(e.target.value);
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
   const submit = () => {
-    console.log(email, password);
-    axios.post("/login", { email: email, password: password });
+    console.log(username, password);
+    axios
+      .post("/admin/login", { username: username, password: password })
+      .then((res) => {
+        console.log(res.data);
+        if (!res.data.error) {
+          history.push("/home");
+        }
+      });
   };
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -32,8 +42,8 @@ const Login = () => {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="E-mail address"
-              onChange={handleEmailChange}
+              placeholder="Username"
+              onChange={handleUserNameChange}
             />
             <Form.Input
               fluid
